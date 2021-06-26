@@ -1,20 +1,19 @@
 # doc file
 # neu @ thi dinh nghia no la tu moi
-
 # them dong vao tu dinh nghia 
+
+
 from pydb import Database
-import time
+
+
 path = r"./database/data_word.db"
 database = Database(path)
-
 path = 'tu.txt'
 file = open(path,'r',encoding='utf-8')
-
 file = file.readlines()
 list_tu = []
 word = []
-for line in file:
-	
+for line in file:	
 	if '@' in line:
 		# tu moi
 		list_tu.append(word)
@@ -23,16 +22,14 @@ for line in file:
 		continue
 	word.append(line)
 # print(list_tu)
-
 del list_tu[0]
-
 # tap 2 
 # thag 1
 i  = 0
 # 22016
 # 25280
 for word in list_tu:
-	i +=1
+	i += 1
 	if i > 25280:
 	# 	break
 	# thang 1 
@@ -41,9 +38,9 @@ for word in list_tu:
 		try:
 
 			tu = word[0].split(" /")[0]
-			tu= tu.replace('"',"")
+			tu = tu.replace('"',"")
 		except :
-			tu="none"
+			tu = "none"
 
 		try:
 
@@ -59,13 +56,12 @@ for word in list_tu:
 			tuloai = ""
 		
 		try:
-			nghia =word[2]
+			nghia = word[2]
 			nghia = nghia.replace('"',"")
 		except:
 
 			nghia = ""
-		
-		
+			
 		mieuta = ""
 		try :
 			mieuta = word[3]
@@ -80,8 +76,6 @@ for word in list_tu:
 		am = am.strip()
 		# print(f'tu: {tu} \nam: {am} \ntuloai: {tuloai} \nnghia: {nghia} \nmieuta: {mieuta}')
 		try:
-
-
 			query = f'INSERT INTO word (e_word, e_type, e_pronouce, e_des, e_mean) VALUES ("{tu}", "{tuloai}","{am}", "{mieuta}","{nghia}")'
 			database.execute(query)
 		# time.sleep(0.5)
